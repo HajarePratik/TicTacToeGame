@@ -16,19 +16,20 @@ public class TicTacToeGame
 		}
 	}
 	
-	// creating a Method for giving value to the computer
-	public char choosesymbol(char player)
+	// taking a Input from User with the Ternary Operator
+	public static char chooseUserLetter(Scanner userInput)
 	{
-		char computer = ' ';
-		if(player == 'X')
-		{
-			computer = 'O';
-		}
-		else if(player == 'O')
-		{
-			computer = 'X';
-		}
-		return computer;
+		System.out.print("Choose You Letter :");
+		return userInput.next().toUpperCase().charAt(0);
+		
+	}
+	
+	// show empty board
+	public void showboard()
+	{
+		System.out.println(board[1] + " | " + board[2] + " | " + board[3]);
+		System.out.println(board[4] + " | " + board[5] + " | " + board[6]);
+		System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
 	}
 	public static void main(String[] args) {
 	
@@ -36,15 +37,19 @@ public class TicTacToeGame
 		
 		// creating a Object for Class.
 		TicTacToeGame T = new TicTacToeGame();
-		T.createboard();						// calling createboard method. 
+		T.createboard();	// calling createboard method.
+		
 		System.out.println("Board Is Initallized");
 		
 		Scanner sc = new Scanner(System.in);   // take input from the user
-		System.out.println("Enter a Symbol X or O :");
-		char player = sc.next().charAt(0);		// getting a value from the user
-		char computer = T.choosesymbol(player); // getting a value from method
-		System.out.println("Player Symbol is :" +player);  // displaying a symbols
-		System.out.println("Computer Symbol is :" +computer);
+		// calling method checking what is the user input 
+		char userLetter = chooseUserLetter(sc);
+		char computerLetter = (userLetter == 'X') ? 'O' : 'X';
+		
+		System.out.println("Player Symbol is :" +userLetter);  // displaying a symbols
+		System.out.println("Computer Symbol is :" +computerLetter);
+		
+		T.showboard(); // calling showboard method
 	}
 
 }
