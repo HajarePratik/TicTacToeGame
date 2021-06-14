@@ -1,11 +1,12 @@
 package com.bridgelabz.tictactoe;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TicTacToeGame 
 {
 
-	char [] board = new char[10];		// declearing a char array
+	static char [] board = new char[10];		// declearing a char array
 	
 	// declearing a Method get size of board and assigned value is empty 
 	public void createboard()
@@ -28,8 +29,33 @@ public class TicTacToeGame
 	public void showboard()
 	{
 		System.out.println(board[1] + " | " + board[2] + " | " + board[3]);
+		System.out.println("----------");
 		System.out.println(board[4] + " | " + board[5] + " | " + board[6]);
+		System.out.println("----------");
 		System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
+
+	}
+	
+	// getting a position and set the value
+	public void playermakemove(char playerLetter) 
+	{
+
+		int boardposition;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the location where you need to put symbol: ");
+		boardposition = sc.nextInt();
+		if (boardposition >= 1 && boardposition <= 9)
+		{
+
+			if (board[boardposition] == ' ') 
+			{
+				board[boardposition] = playerLetter;
+			} 
+			else 
+			{
+				System.out.println(" The position is Already filled");
+			}
+		}
 	}
 	public static void main(String[] args) {
 	
@@ -41,15 +67,18 @@ public class TicTacToeGame
 		
 		System.out.println("Board Is Initallized");
 		
-		Scanner sc = new Scanner(System.in);   // take input from the user
+		Scanner userInput = new Scanner(System.in);   // take input from the user
 		// calling method checking what is the user input 
-		char userLetter = chooseUserLetter(sc);
+		char userLetter = chooseUserLetter(userInput);
 		char computerLetter = (userLetter == 'X') ? 'O' : 'X';
 		
 		System.out.println("Player Symbol is :" +userLetter);  // displaying a symbols
 		System.out.println("Computer Symbol is :" +computerLetter);
 		
 		T.showboard(); // calling showboard method
+		
+		T.playermakemove(userLetter); // calling playmakemove method
+		T.showboard();
 	}
 
 }
